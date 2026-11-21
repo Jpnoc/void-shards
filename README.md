@@ -43,10 +43,11 @@ Never tap your own real ads while testing: AdMob can ban the account. Keep `USE_
 
 `docs/privacy-policy.html` is the game's privacy policy, and `docs/data-safety.md` has ready-made answers for Play Console's Data safety, Ads and Target audience forms.
 
+The contact email in the policy is jp@jpbcommerce.com.
+
 To put the policy online for free with GitHub Pages:
-1. Replace both `CONTACT_EMAIL` placeholders in `docs/privacy-policy.html` with the email you want players to use.
-2. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main`, folder `/docs` → Save**.
-3. After a minute it's live at `https://jpnoc.github.io/helloworld/privacy-policy.html`. Paste that URL into Play Console (**Policy → App content → Privacy policy**). The game links to it from the How to Play screen.
+1. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main`, folder `/docs` → Save**.
+2. After a minute it's live at `https://jpnoc.github.io/helloworld/privacy-policy.html`. Paste that URL into Play Console (**Policy → App content → Privacy policy**). The game links to it from the How to Play screen.
 
 ## Project layout
 
