@@ -1,7 +1,7 @@
 // Monetization settings. Change these when your real AdMob account is ready.
 const CONFIG = {
   // Public privacy policy (GitHub Pages from the docs/ folder). Also enter this URL in Play Console.
-  PRIVACY_POLICY_URL: 'https://jpnoc.github.io/helloworld/privacy-policy.html',
+  PRIVACY_POLICY_URL: 'https://jpnoc.github.io/void-shards/privacy-policy.html',
 
   // Keep true until the app is approved and live: real ads tapped during testing can get your AdMob account banned.
   USE_TEST_ADS: true,
