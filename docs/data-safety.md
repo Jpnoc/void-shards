@@ -4,7 +4,7 @@ Use these when filling in Play Console. They describe the current game: no accou
 Google's own guide for the AdMob SDK is the source of truth if anything differs: https://developers.google.com/admob/android/privacy/play-data-disclosure
 
 ## Privacy policy URL
-`https://jpnoc.github.io/helloworld/privacy-policy.html` (after GitHub Pages is turned on; see the README)
+`https://jpnoc.github.io/void-shards/privacy-policy.html` (after GitHub Pages is turned on; see the README)
 
 ## Ads
 **Does your app contain ads?** Yes

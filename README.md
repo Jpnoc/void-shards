@@ -47,7 +47,7 @@ The contact email in the policy is jp@jpbcommerce.com.
 
 To put the policy online for free with GitHub Pages:
 1. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main`, folder `/docs` → Save**.
-2. After a minute it's live at `https://jpnoc.github.io/helloworld/privacy-policy.html`. Paste that URL into Play Console (**Policy → App content → Privacy policy**). The game links to it from the How to Play screen.
+2. After a minute it's live at `https://jpnoc.github.io/void-shards/privacy-policy.html`. Paste that URL into Play Console (**Policy → App content → Privacy policy**). The game links to it from the How to Play screen.
 
 ## Project layout
 
