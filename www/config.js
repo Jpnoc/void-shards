@@ -3,10 +3,11 @@ const CONFIG = {
   // Public privacy policy (GitHub Pages from the docs/ folder). Also enter this URL in Play Console.
   PRIVACY_POLICY_URL: 'https://jpnoc.github.io/void-shards/privacy-policy.html',
 
-  // Keep true until the app is approved and live: real ads tapped during testing can get your AdMob account banned.
-  USE_TEST_ADS: true,
-  // Google's official test ad unit. Replace with your own rewarded ad unit ID from admob.google.com (ca-app-pub-XXXX/YYYY).
-  ADMOB_REWARDED_ID: 'ca-app-pub-3940256099942544/5224354917',
+  // false = real ads. Never tap real ads on your own phone: register it as a test device in AdMob
+  // (Settings > Test devices) so it gets test ads, or set this to true for a local test build.
+  USE_TEST_ADS: false,
+  // Void Shards "Out of moves" rewarded ad unit (AdMob app ca-app-pub-8133533482418386~8739565872).
+  ADMOB_REWARDED_ID: 'ca-app-pub-8133533482418386/3215329348',
   // The AdMob *app* ID lives in android/app/src/main/AndroidManifest.xml (com.google.android.gms.ads.APPLICATION_ID).
 
   ECONOMY: {
