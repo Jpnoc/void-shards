@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f7f4">
+<title>ReceiptWise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <main id="main" aria-live="polite">
+    <section id="view-home" class="view"></section>
+    <section id="view-receipts" class="view" hidden></section>
+    <section id="view-budgets" class="view" hidden></section>
+    <section id="view-settings" class="view" hidden></section>
+  </main>
+  <nav id="nav" aria-label="Main">
+    <button data-tab="home" class="tab on"><span aria-hidden="true">🏠</span>Home</button>
+    <button data-tab="receipts" class="tab"><span aria-hidden="true">🧾</span>Receipts</button>
+    <button id="scan-fab" class="fab" aria-label="Scan a receipt"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3.2"/></svg></button>
+    <button data-tab="budgets" class="tab"><span aria-hidden="true">🎯</span>Budgets</button>
+    <button data-tab="settings" class="tab"><span aria-hidden="true">⚙️</span>Settings</button>
+  </nav>
+</div>
+<div id="sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-label="Receipt"></div>
+<div id="modal" class="modal" hidden role="dialog" aria-modal="true"></div>
+<div id="busy" class="busy" hidden><div class="spinner"></div><p id="busy-text">Reading your receipt…</p></div>
+<div id="toast" class="toast" hidden role="status"></div>
+<script src="capacitor.js"></script>
+<script src="config.js"></script>
+<script src="calc.js"></script>
+<script src="store.js"></script>
+<script src="scan.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
