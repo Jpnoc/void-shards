@@ -52,13 +52,48 @@
     return out;
   }
 
-  function csv(receipts) {
-    const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
-    const rows = [['Date', 'Store', 'Item', 'Category', 'Amount (incl. tax)', 'Returned']];
-    for (const r of [...receipts].sort((a, b) => a.date.localeCompare(b.date)))
-      for (const i of r.items) rows.push([r.date, r.store, i.name, i.category, itemAmount(r, i).toFixed(2), i.returned ? 'yes' : 'no']);
-    return rows.map(r => r.map(q).join(',')).join('\r\n');
+  // ---- business / personal ----
+  const isBusiness = x => x.kind === 'business';
+  function filterBy(list, { range, kind } = {}) {
+    return list.filter(x => (!range || inRange(x, range)) && (!kind || kind === 'all' || (kind === 'business') === isBusiness(x)));
+  }
+  function lastMonth(todayStr) {
+    const t = parse(todayStr);
+    return [ymd(new Date(t.getFullYear(), t.getMonth() - 1, 1)), ymd(new Date(t.getFullYear(), t.getMonth(), 0))];
   }
 
-  return { round2, subtotal, taxRate, itemAmount, grossTotal, refundedTotal, netTotal, ymd, parse, addDays, periods, totalFor, byCategory, allTotals, csv };
+  // ---- mileage: trip = { date, from, to, distance, purpose, kind } ----
+  const tripValue = (t, rate) => round2((Number(t.distance) || 0) * (Number(rate) || 0));
+  function tripTotals(trips, range, rate, kind) {
+    const l = filterBy(trips, { range, kind });
+    return { count: l.length, distance: round2(l.reduce((s, t) => s + (Number(t.distance) || 0), 0)), value: round2(l.reduce((s, t) => s + tripValue(t, rate), 0)) };
+  }
+
+  // ---- reports ----
+  const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  const line = r => r.map(q).join(',');
+  const byDate = (a, b) => a.date.localeCompare(b.date);
+  function csv(receipts) {
+    const rows = [['Date', 'Store', 'Type', 'Item', 'Category', 'Amount (incl. tax)', 'Returned', 'Notes']];
+    for (const r of [...receipts].sort(byDate))
+      for (const i of r.items) rows.push([r.date, r.store, isBusiness(r) ? 'Business' : 'Personal', i.name, i.category, itemAmount(r, i).toFixed(2), i.returned ? 'yes' : 'no', r.notes || '']);
+    return rows.map(line).join('\r\n');
+  }
+  function tripsCsv(trips, rate, unit) {
+    const rows = [['Date', 'From', 'To', 'Distance (' + unit + ')', 'Type', 'Purpose', 'Value']];
+    for (const t of [...trips].sort(byDate)) rows.push([t.date, t.from, t.to, t.distance, isBusiness(t) ? 'Business' : 'Personal', t.purpose || '', tripValue(t, rate).toFixed(2)]);
+    return rows.map(line).join('\r\n');
+  }
+  // One file for an accountant: receipts section, then mileage section, then totals.
+  function report(receipts, trips, { range, kind, rate, unit }) {
+    const R = filterBy(receipts, { range, kind }), T = filterBy(trips, { range, kind });
+    const spend = round2(R.reduce((s, r) => s + netTotal(r), 0)), tt = tripTotals(trips, range, rate, kind);
+    const parts = [csv(R)];
+    if (T.length) parts.push('', tripsCsv(T, rate, unit));
+    parts.push('', line(['Total spend (net of returns)', spend.toFixed(2)]));
+    if (T.length) parts.push(line(['Total distance (' + unit + ')', tt.distance]), line(['Mileage value', tt.value.toFixed(2)]));
+    return parts.join('\r\n');
+  }
+
+  return { round2, subtotal, taxRate, itemAmount, grossTotal, refundedTotal, netTotal, ymd, parse, addDays, periods, totalFor, byCategory, allTotals, isBusiness, filterBy, lastMonth, tripValue, tripTotals, csv, tripsCsv, report };
 });

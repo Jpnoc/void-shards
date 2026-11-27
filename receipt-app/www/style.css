@@ -73,3 +73,6 @@ input.t,select.t{width:100%;min-height:46px;padding:0 12px;border-radius:12px;bo
 .setrow input[type=checkbox]{width:24px;height:24px;accent-color:var(--brand)}
 .setrow select{min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);padding:0 8px}
 a{color:var(--brand)}
+.seg{display:flex;background:var(--line);border-radius:12px;padding:3px;margin-bottom:10px}.seg button{flex:1;min-height:42px;border:0;background:none;border-radius:10px;font-weight:600;color:var(--muted)}.seg button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.chips{display:flex;gap:8px;margin:2px 0 10px;flex-wrap:wrap}.chip{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;color:var(--muted)}.chip.on{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.modal .box{max-height:92vh;overflow-y:auto}

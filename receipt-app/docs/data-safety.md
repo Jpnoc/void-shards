@@ -18,9 +18,10 @@ Source of truth is Google's own form; these reflect how the app works today (no 
 | Data type | Collected | Shared | Ephemeral | Required | Purpose |
 |---|---|---|---|---|---|
 | Photos and videos → Photos (the receipt photo) | Yes | Yes (with Google, the AI provider) | Yes (processed, not stored by us) | Optional (manual entry sends nothing) | App functionality |
-| Financial info → Purchase history (items/prices read from the receipt image) | Yes | Yes (same transfer) | Yes | Optional | App functionality |
+| Financial info → Purchase history (items/prices read from the receipt or invoice) | Yes | Yes (same transfer) | Yes | Optional | App functionality |
+| Files and docs → Files and docs (PDF invoices you import) | Yes | Yes (same transfer) | Yes | Optional | App functionality |
 
-Leave everything else unticked. Because the Gemini free tier lets Google use content to improve its products, the transfer counts as **sharing**, not just service-provider processing. If you move the backend to a paid tier or to Claude (`PROVIDER = "claude"`), re-check this table and the privacy policy.
+Mileage trips are typed in by the user and stay on the device, so they are not collected. The app has no location permission, so do not declare Location. Leave everything else unticked. Because the Gemini free tier lets Google use content to improve its products, the transfer counts as **sharing**, not just service-provider processing. If you move the backend to a paid tier or to Claude (`PROVIDER = "claude"`), re-check this table and the privacy policy.
 
 ## Before you rely on the free Gemini tier
 Google's terms for the free tier may restrict its use in apps offered to users in the EEA, UK and Switzerland (paid services are required there). Read the current Gemini API terms before choosing countries in Play Console, or restrict distribution to regions the free tier allows.

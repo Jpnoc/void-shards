@@ -11,6 +11,7 @@ test('schema enumerates categories and is strict', () => {
 test('request validation', () => {
   const ok = { image: 'abc', mediaType: 'image/jpeg', categories: cats };
   assert.equal(validateRequest(ok), null);
+  assert.equal(validateRequest({ ...ok, mediaType: 'application/pdf' }), null);
   assert.ok(validateRequest({ ...ok, mediaType: 'image/gif' }));
   assert.ok(validateRequest({ ...ok, image: '' }));
   assert.ok(validateRequest({ ...ok, categories: ['x'] }));

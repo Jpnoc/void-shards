@@ -23,3 +23,10 @@ test('error mapping', async () => {
   await assert.rejects(callGemini({ GEMINI_API_KEY: 'k' }, body, reply(500, {})), e => e.kind === 'upstream');
   await assert.rejects(callGemini({ GEMINI_API_KEY: 'k' }, body, reply(200, { candidates: [] })), e => e instanceof UpstreamError && e.kind === 'unreadable');
 });
+
+test('gemini sends PDFs as inline_data with the pdf mime type', async () => {
+  let sent;
+  const f = async (u, init) => { sent = JSON.parse(init.body); return new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text: '{}' }] } }] })); };
+  await callGemini({ GEMINI_API_KEY: 'k' }, { ...body, mediaType: 'application/pdf' }, f);
+  assert.equal(sent.contents[0].parts[0].inline_data.mime_type, 'application/pdf');
+});

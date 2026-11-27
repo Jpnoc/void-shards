@@ -59,5 +59,35 @@ test('float noise is rounded away', () => {
 test('csv escapes quotes and marks returns', () => {
   const out = C.csv([mk('2026-11-10', [['5" pan, large', 10, 'Household', true]])]);
   assert.match(out, /"5"" pan, large"/);
-  assert.match(out, /"yes"$/);
+  assert.match(out, /"yes",""$/);
+});
+
+const trip = (date, distance, kind = 'business') => ({ id: date + distance, date, from: 'A', to: 'B', distance, purpose: 'Client', kind });
+
+test('business filter and personal filter split receipts', () => {
+  const b = { ...mk('2026-11-05', [['Laptop', 100, 'Electronics']]), kind: 'business' }, p = mk('2026-11-06', [['Pizza', 20, 'Dining']]);
+  assert.equal(C.filterBy([b, p], { kind: 'business' }).length, 1);
+  assert.equal(C.filterBy([b, p], { kind: 'personal' })[0].items[0].name, 'Pizza');
+  assert.equal(C.filterBy([b, p], { kind: 'all' }).length, 2);
+});
+
+test('lastMonth handles January rollover', () => {
+  assert.deepEqual(C.lastMonth('2027-01-15'), ['2026-12-01', '2026-12-31']);
+  assert.deepEqual(C.lastMonth('2026-03-31'), ['2026-02-01', '2026-02-28']);
+});
+
+test('mileage totals and value in range', () => {
+  const ts = [trip('2026-11-02', 10.5), trip('2026-11-20', 4.5), trip('2026-10-30', 100), trip('2026-11-21', 8, 'personal')];
+  const m = C.periods('2026-11-26').month;
+  assert.deepEqual(C.tripTotals(ts, m, 0.5), { count: 3, distance: 23, value: 11.5 });
+  assert.deepEqual(C.tripTotals(ts, m, 0.5, 'business'), { count: 2, distance: 15, value: 7.5 });
+});
+
+test('report has receipts, mileage and totals for the chosen range only', () => {
+  const rs = [{ ...mk('2026-11-05', [['Laptop', 100, 'Electronics'], ['Cable', 10, 'Electronics', true]]), kind: 'business' }, mk('2026-10-01', [['Old', 5, 'Other']])];
+  const out = C.report(rs, [trip('2026-11-07', 12)], { range: C.periods('2026-11-26').month, kind: 'business', rate: 0.5, unit: 'mi' });
+  assert.match(out, /"Laptop"/); assert.doesNotMatch(out, /"Old"/);
+  assert.match(out, /"Distance \(mi\)"/);
+  assert.match(out, /"Total spend \(net of returns\)","100.00"/);
+  assert.match(out, /"Mileage value","6.00"/);
 });

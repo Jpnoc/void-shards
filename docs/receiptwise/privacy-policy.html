@@ -9,19 +9,19 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,sans
 
 <h2>What the app does with your data</h2>
 <ul>
-<li><strong>Receipts you scan or type in</strong> (store, date, items, prices, categories, returns, budgets) are saved <em>on your device only</em>. We cannot see them.</li>
-<li><strong>Receipt photos.</strong> When you scan, the photo is sent to our server, which forwards it to an AI model (Google Gemini) to extract the text and sort the items. Our server does not store the photo or the result. The photo may contain personal information printed on the receipt (for example a partial card number or a name); please avoid photographing anything you do not want read.</li>
+<li><strong>Receipts, trips and settings you enter</strong> (store, date, items, prices, categories, returns, business/personal tags, notes, mileage trips, budgets) are saved <em>on your device only</em>. We cannot see them.</li>
+<li><strong>Receipt photos and PDF invoices.</strong> When you scan or import, the photo or PDF is sent to our server, which forwards it to an AI model (Google Gemini) to extract the text and sort the items. Our server does not store the file or the result. The file may contain personal information printed on the receipt or invoice (for example a partial card number or a name); please avoid sending anything you do not want read.</li>
 <li><strong>Optional photo thumbnail.</strong> If "Keep a small photo of each receipt" is on in Settings, a small copy is stored on your phone only. You can turn this off.</li>
 </ul>
 
 <h2>The AI service</h2>
-<p>We use the free tier of the Google Gemini API. Under Google's terms for that tier, content sent to it may be used by Google to improve its products, and may be reviewed by people. If you prefer not to share a receipt this way, use "Enter manually", which sends nothing. See <a href="https://ai.google.dev/gemini-api/terms">Google's Gemini API terms</a>.</p>
+<p>We use the free tier of the Google Gemini API. Under Google's terms for that tier, content sent to it may be used by Google to improve its products, and may be reviewed by people. If you prefer not to share a receipt this way, use "Enter receipt manually" or "Log a trip", which send nothing. See <a href="https://ai.google.dev/gemini-api/terms">Google's Gemini API terms</a>.</p>
 
 <h2>Servers and logs</h2>
 <p>Requests pass through a Cloudflare Worker that we operate. Cloudflare may process your IP address to deliver the service and prevent abuse (rate limiting). We do not keep our own logs of receipt content.</p>
 
 <h2>What we do not collect</h2>
-<p>No name, email, phone number, location, contacts, advertising ID, or analytics. The app has no accounts and no ads.</p>
+<p>No name, email, phone number, location (mileage is typed in by you; the app never uses GPS), contacts, advertising ID, or analytics. The app has no accounts and no ads.</p>
 
 <h2>Your choices and deleting data</h2>
 <ul><li>Export your data any time (Settings, Export CSV).</li>

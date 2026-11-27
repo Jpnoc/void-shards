@@ -39,7 +39,9 @@ export async function callClaude(env, body) {
       max_tokens: 8000,
       output_config: { effort: 'low', format: { type: 'json_schema', schema: buildSchema(body.categories) } },
       messages: [{ role: 'user', content: [
-        { type: 'image', source: { type: 'base64', media_type: body.mediaType, data: body.image } },
+        body.mediaType === 'application/pdf'
+          ? { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: body.image } }
+          : { type: 'image', source: { type: 'base64', media_type: body.mediaType, data: body.image } },
         { type: 'text', text: buildPrompt(body.categories, String(body.today || '').slice(0, 10)) },
       ] }],
     });

@@ -6,7 +6,10 @@ Snap a photo of a sales receipt and AI sorts every item into budget categories. 
 - **Categories:** Groceries, Dining, Transport, Health, Household, Clothing, Electronics, Entertainment, Personal Care, Other (edit in `www/config.js`).
 - **Running totals:** after every save you see Today / This week / This month, and the Home screen always shows today, week, month and year.
 - **Returns:** tick **Returned** on an item and its price plus its share of tax comes off every total and budget.
-- **Budgets:** monthly limit per category with progress bars. **Export** everything to CSV.
+- **Invoices:** import a PDF (or photo) invoice with the same AI reader.
+- **Business workflow:** tag receipts Business/Personal, add notes, filter, and export a CSV report (receipts + mileage + totals) for any period.
+- **Mileage log:** manual trips (from, to, distance, purpose) with an optional rate per mile/km. There is no automatic GPS tracking, so the app needs no location permission.
+- **Budgets:** monthly limit per category with progress bars.
 - **Private:** receipts live in the phone's storage. No accounts, no ads.
 
 ## Layout
@@ -16,7 +19,7 @@ worker/     free Cloudflare Worker that reads receipts with AI (see worker/READM
 android/    Capacitor Android project (targetSdk 36)
 docs/       privacy policy + Play Console answers
 store-listing/  listing text, icon, feature graphic, screenshots
-test/       unit tests (calc) and browser tests (e2e.mjs)
+test/       unit tests (calc), browser tests (e2e.mjs), store screenshot scripts (shots.mjs, promo.mjs)
 ```
 
 ## Run and test

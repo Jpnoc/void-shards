@@ -1,6 +1,6 @@
 # ReceiptWise API (free to run)
 
-A tiny Cloudflare Worker. The app sends it a receipt photo; it asks an AI vision model to read it and returns clean JSON.
+A tiny Cloudflare Worker. The app sends it a receipt photo or PDF invoice; it asks an AI vision model to read it and returns clean JSON.
 The AI key lives here, never inside the app.
 
 **Cost: $0.** Cloudflare Workers free plan (100,000 requests/day) + Google Gemini API free tier.
