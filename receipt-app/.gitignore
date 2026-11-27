@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+*.jks
+*.keystore
+android/keystore.properties
+android/local.properties
+worker/node_modules/
+worker/.dev.vars
+www/capacitor.js

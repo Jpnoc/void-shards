@@ -1,0 +1,20 @@
+name = "receiptwise-api"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+# "gemini" = Google Gemini API free tier (no cost). "claude" = Anthropic API (paid per scan, most accurate).
+PROVIDER = "gemini"
+GEMINI_MODEL = "gemini-3.1-flash-lite"
+
+# Per-IP rate limit (Cloudflare Workers Rate Limiting). 20 scans per minute per IP.
+[[unsafe.bindings]]
+name = "LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 20, period = 60 }
+
+# Secrets (set with `npx wrangler secret put NAME`, never commit them):
+#   GEMINI_API_KEY      free key from https://aistudio.google.com/apikey
+#   ANTHROPIC_API_KEY   only if PROVIDER = "claude"
+#   APP_KEY             random string, also put in www/config.js as APP_KEY (stops casual abuse)

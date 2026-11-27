@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ReceiptWise</string>
+    <string name="title_activity_main">ReceiptWise</string>
+    <string name="package_name">com.jpbcommerce.receiptwise</string>
+    <string name="custom_url_scheme">com.jpbcommerce.receiptwise</string>
+</resources>

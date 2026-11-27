@@ -1,0 +1,27 @@
+{
+  "name": "receiptwise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ReceiptWise - snap a receipt, AI sorts it into budget categories",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "vendor": "cp node_modules/@capacitor/core/dist/capacitor.js www/capacitor.js",
+    "serve": "npx http-server www -p 8081 -c-1",
+    "sync": "npm run vendor && npx cap sync android",
+    "assets": "npx capacitor-assets generate --android",
+    "build:debug": "npm run sync && cd android && ./gradlew assembleDebug",
+    "build:release": "npm run sync && cd android && ./gradlew bundleRelease"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.6.2",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/camera": "8.2.6",
+    "@capacitor/core": "8.6.2",
+    "@capacitor/filesystem": "8.1.5",
+    "@capacitor/share": "8.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "4.0.0",
+    "@capacitor/cli": "8.6.2"
+  }
+}
