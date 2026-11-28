@@ -307,6 +307,13 @@ async function gravity() {
     }
     if (!slid) break;
   }
+  // Pockets sealed off from above (e.g. under corruption or obsidian) can't be reached by falling or sliding
+  // shards, so a new shard materialises in place instead of leaving an empty hole on the board.
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    if (!isFillable(r, c)) continue;
+    spawnGem(r, c, 0);
+    const g = grid[r][c].gem; g.y = r; g.v = 0; g.pop = 1;
+  }
   await waitSettled();
 }
 function waitSettled() { return new Promise(res => settleWaiters.push(res)); }
